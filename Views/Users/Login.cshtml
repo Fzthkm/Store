@@ -1,0 +1,25 @@
+﻿@model NewStudio.Models.LoginModel
+<div style="text-align:center;">
+    <h2>Вход на сайт</h2>
+
+    <h6>Нет учетной записи? <a asp-action="Register" asp-controller="Users">Регистрация</a><br /><br /></h6>
+
+    <form asp-action="Login" asp-controller="Users" asp-anti-forgery="true">
+        <div class="validation" asp-validation-summary="ModelOnly"></div>
+        <div>
+            <div class="form-group">
+                <label asp-for="Login">Введите Login</label><br />
+                <input type="text" asp-for="Login" />
+                <span asp-validation-for="Login" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Password">Введите пароль</label><br />
+                <input asp-for="Password" />
+                <span asp-validation-for="Password" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Войти" class="btn btn-dark" />
+            </div>
+        </div>
+    </form>
+</div>

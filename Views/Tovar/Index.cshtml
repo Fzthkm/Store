@@ -1,0 +1,67 @@
+﻿@model IEnumerable<NewStudio.Models.Tovar>
+
+@{
+    ViewData["Title"] = "Список товаров";
+}
+
+<h1>Список товаров</h1>
+@if (User.IsInRole("admin"))
+{
+    <a class="btn btn-outline-dark" asp-action="Create" asp-controller="Tovar">Добавить товар</a>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                
+            </th>
+            <th>
+                Название
+            </th>
+            <th>
+                Стоимость
+            </th>
+            <th>
+                
+            </th>
+            @if(User.IsInRole("admin"))
+            { <th></th>}
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            @if (item.category == category.mouse || item.category == category.kreslo || item.category == category.games)
+            {
+
+                <td>
+                    <img style="width: 100px;height: 150px;" src="~/image/tovar/@item.Image" />
+                </td>
+            }
+            else
+            {
+
+                <td>
+                    <img style="width: 200px;height: 150px;" src="~/image/tovar/@item.Image" />
+                </td>
+            }
+            <td>
+                <a asp-action="Details" asp-controller="Tovar" asp-route-id="@item.Id"> @Html.DisplayFor(modelItem => item.Name)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cost) руб.
+            </td>
+            @if (User.IsInRole("user"))
+            {
+                <td><a class="btn btn-outline-dark" asp-action="addToCart" asp-controller="Orders" asp-route-id="@item.Id">Добавить в корзину</a></td>
+            }
+            @if (User.IsInRole("admin"))
+            {
+
+                <td><a class="btn btn-outline-dark" asp-action="Edit" asp-controller="Tovar" asp-route-id="@item.Id">Редактировать</a></td>
+                <td><a class="btn btn-outline-dark" asp-action="Delete" asp-controller="Tovar" asp-route-id="@item.Id">Удалить</a></td>
+            }
+        </tr>
+}
+    </tbody>
+</table>

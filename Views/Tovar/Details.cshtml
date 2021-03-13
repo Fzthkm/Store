@@ -1,0 +1,75 @@
+﻿@model NewStudio.Models.Tovar
+
+@{
+    ViewData["Title"] = "Details";
+}
+<style>
+    .content {
+        display: flex;
+        flex-direction: row;
+    }
+</style>
+<div>
+    <h4>
+        @Html.DisplayFor(model => model.Name)
+    </h4>
+    <hr />
+    <div class="content">
+        @if (Model.category == category.mouse || Model.category == category.kreslo || Model.category == category.games)
+        {
+            <img style="width:200px; height: 300px;" src="~/image/tovar/@Model.Image" />
+        }
+        else
+        {
+            <img style="width: 500px; height: 300px;" src="~/image/tovar/@Model.Image" />
+        }
+        <dl>
+            <dt class="col-sm-2">
+                Модель
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt class="col-sm-2">
+                Стоимость
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Cost) руб.
+            </dd>
+            <dt class="col-sm-2">
+                Дополнительная информация
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+        </dl>
+
+    </div>
+    <div>
+    </div>
+</div>
+<div>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <a class="btn btn-outline-dark" asp-action="addToCard" asp-controller="Orders" asp-route-id="@Model.Id">Добавить в корзину</a> <span> </span>
+    }
+    @if (Model.category == category.mouse)
+    {
+        <a class="btn btn-outline-dark" asp-action="Index" asp-route-id="1">Вернуться к выбору товара</a>
+    }    @if (Model.category == category.kreslo)
+    {
+        <a class="btn btn-outline-dark" asp-action="Index" asp-route-id="2">Вернуться к выбору товара</a>
+    }    @if (Model.category == category.keyboard)
+    {
+        <a class="btn btn-outline-dark" asp-action="Index" asp-route-id="3">Вернуться к выбору товара</a>
+    }    @if (Model.category == category.notebook)
+    {
+        <a class="btn btn-outline-dark" asp-action="Index" asp-route-id="4">Вернуться к выбору товара</a>
+    }    @if (Model.category == category.games)
+    {
+        <a class="btn btn-outline-dark" asp-action="Index" asp-route-id="5">Вернуться к выбору товара</a>
+    }    @if (Model.category == category.console)
+    {
+        <a class="btn btn-outline-dark" asp-action="Index" asp-route-id="6">Вернуться к выбору товара</a>
+    }
+</div>

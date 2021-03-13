@@ -1,0 +1,77 @@
+﻿@model NewStudio.Models.UpdateViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Пользователь</h1>
+
+<div>
+    <h4>Основная информация</h4>
+    <hr />
+    <dl>
+        <dt class="col-sm-5">Имя</dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.User._Name)
+        </dd>
+        <dt class="col-sm-5">
+            Тип учетной записи
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.User.Role.Name)
+        </dd>
+
+        <dt class="col-sm-5">
+            Текущий адрес
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.User.Adress)
+        </dd>
+        <dt class="col-sm-5">
+            Текущий номер карты
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.User.CreditCard)
+        </dd>
+    </dl>
+    <form asp-action="Edit" asp-controller="Users">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="User.Id" />
+        <h4>Изменить пароль</h4>
+        <div class="form-group">
+            <label>Новый пароль</label><br />
+            <input asp-for="newPassword" />
+            <span asp-validation-for="newPassword" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label>Подтвердите пароль</label><br />
+            <input asp-for="confirmPassword" />
+            <span asp-validation-for="confirmPassword" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <div class="form-group">
+                <label>Введите старый пароль</label><br />
+                <input asp-for="oldPassword" />
+                <span asp-validation-for="oldPassword" />
+            </div>
+        </div>
+        <h4>Дополнительная информация</h4>
+        <div class="form-group">
+            <label asp-for="newCard">Номер банковской карты</label><br />
+            <input asp-for="newCard" maxlength="20" />
+            <span asp-validation-for="newCard" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="newAdress" class="control-label">Адрес</label>
+            <input asp-for="newAdress" class="form-control" />
+            <span asp-validation-for="newAdress" class="text-danger"></span>
+        </div>
+        <div>
+            <input class="btn btn-outline-dark" type="submit" value="Обновить данные" />
+        </div>
+    </form>
+</div>
+<div>
+    <br />
+    <a class="btn btn-outline-dark" asp-controller="Home" asp-action="Index">На главную</a>
+</div>

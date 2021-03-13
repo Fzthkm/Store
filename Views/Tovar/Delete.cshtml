@@ -1,0 +1,16 @@
+﻿@model NewStudio.Models.Tovar
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Удалить</h1>
+
+<h3>Вы действительно хотите удалить данный товар?</h3>
+<div>
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Да" class="btn btn-danger" /> |
+        <a class="btn btn-outline-dark" asp-action="Index">Нет</a>
+    </form>
+</div>

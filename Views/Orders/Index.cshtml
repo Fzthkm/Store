@@ -1,0 +1,69 @@
+﻿@model IEnumerable<NewStudio.Models.Order>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Заказы</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Имя пользователя
+            </th>
+
+            <th>
+                Способ оплаты
+            </th>
+            <th>
+                Статус заявки
+            </th>
+            <th></th>
+            <th>
+                Название товара
+            </th>
+
+            <th>
+                Количество товара
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.User._Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.status)
+            </td>
+            @if (item.Tovar.category == category.mouse || item.Tovar.category == category.games || item.Tovar.category == category.kreslo)
+            {
+                <td>
+                    <img style="width:100px; height:80px;" src="~/image/tovar/@item.Tovar.Image" />
+                </td>
+            }
+            else
+            {
+                <td>
+                    <img style="width:200px; height:80px;" src="~/image/tovar/@item.Tovar.Image" />
+                </td>
+            }
+            <td>
+                @Html.DisplayFor(modelItem => item.Tovar.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item._Count)
+            </td>
+            <td>
+                <a class="btn btn-outline-dark" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

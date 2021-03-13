@@ -1,0 +1,62 @@
+﻿@model IEnumerable<NewStudio.Models.Order>
+
+@{
+    ViewData["Title"] = "Корзина";
+}
+<h1>Корзина</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                Товар
+            </th>
+            <th>
+                Стоимость
+            </th>
+            <th>
+                Количество
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            @if (item.Tovar.category == category.mouse || item.Tovar.category == category.kreslo || item.Tovar.category == category.games)
+            {
+
+                <td>
+                    <img style="width: 100px; height:80px;" src="~/image/tovar/@item.Tovar.Image" />
+                </td>
+            }
+            else
+            {
+
+                <td>
+                    <img style="width: 200px; height:80px;" src="~/image/tovar/@item.Tovar.Image" />
+                </td>
+            }
+            <td>
+                <a asp-action="Details" asp-controller="Tovars" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Tovar.Name)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tovar.Cost) руб.
+            </td>
+            <td>
+                @item._Count
+            </td>
+            <td>
+                <a asp-controller="Orders" asp-action="Delete" asp-route-id="@item.Id">x</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+<hr />
+<a class="btn btn-dark" asp-action="Oplata" asp-controller="Orders" asp-route-id="2">Оплата картой</a><span> </span>
+<a class="btn btn-dark" asp-action="Oplata" asp-controller="Orders" asp-route-id="1">Оплата наличкой</a>
+Общая стоимость заказа : @Model.Sum(x => x._Count * x.Tovar.Cost) руб.
+<hr />
