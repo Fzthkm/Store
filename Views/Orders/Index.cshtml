@@ -31,39 +31,54 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.User._Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.type)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.status)
-            </td>
-            @if (item.Tovar.category == category.mouse || item.Tovar.category == category.games || item.Tovar.category == category.kreslo)
-            {
+        @foreach (var item in Model)
+        {
+            <tr>
                 <td>
-                    <img style="width:100px; height:80px;" src="~/image/tovar/@item.Tovar.Image" />
+                    @Html.DisplayFor(modelItem => item.User._Name)
                 </td>
-            }
-            else
-            {
                 <td>
-                    <img style="width:200px; height:80px;" src="~/image/tovar/@item.Tovar.Image" />
+                    @if (item.type.ToString() == "Cash")
+                    {
+                        <p>Наличный расчёт</p>
+                    }
+                    else
+                    {
+                        <p>Оплата по карте</p>
+                    }
                 </td>
-            }
-            <td>
-                @Html.DisplayFor(modelItem => item.Tovar.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item._Count)
-            </td>
-            <td>
-                <a class="btn btn-outline-dark" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
-            </td>
-        </tr>
-}
+                <td>
+                    @if (item.status.ToString() == "Close")
+                    {
+                        <p>Закрыта</p>
+                    }
+                    else
+                    {
+                        <p>Открыта</p>
+                    }
+                </td>
+                @if (item.Tovar.category == category.mouse || item.Tovar.category == category.games || item.Tovar.category == category.kreslo)
+                {
+                    <td>
+                        <img style="width:100px; height:80px;" src="~/image/tovar/@item.Tovar.Image" />
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        <img style="width:200px; height:80px;" src="~/image/tovar/@item.Tovar.Image" />
+                    </td>
+                }
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tovar.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item._Count)
+                </td>
+                <td>
+                    <a class="btn btn-outline-dark" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

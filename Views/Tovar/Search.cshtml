@@ -1,0 +1,50 @@
+﻿@using NewStudio.Models
+@model svm
+
+@{
+    ViewData["Title"] = "Поиск";
+}
+
+<h1>Поиск товара</h1>
+<form method="get">
+    <div class="form-inline">
+        <label>Товар: </label>
+        <input style="margin:5px;" name="name" value="@Model.viewModel.SelectedName" />
+        <span> </span>
+        <input type="submit" value="Поиск" class="btn btn-dark" />
+    </div>
+    <br />
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Изображение
+            </th>
+            <th>
+                Товар
+            </th>
+            <th>
+                Стоимость
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Tovars)
+        {
+            <tr>
+                <td>
+                    <img src="~/image/tovar/@item.Image" style='width:100px; height:80px;' />
+                </td>
+                <td>
+                    <a asp-action="Details" asp-controller="Tovar" asp-route-id="@item.Id">
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cost) руб.
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

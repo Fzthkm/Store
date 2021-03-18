@@ -201,7 +201,7 @@ namespace NewStudio.Views
             User currentUser = await _context.Users.FirstOrDefaultAsync(x => x._Username == User.Identity.Name);
             foreach (Order orders in _context.orders)
             {
-                if (orders.UserId == currentUser.Id && orders.TovarId == id)
+                if (orders.UserId == currentUser.Id && orders.TovarId == id && orders.status == status.Open)
                 {
                     orders._Count++;
                     id = null;

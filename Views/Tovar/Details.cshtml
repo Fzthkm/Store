@@ -3,12 +3,6 @@
 @{
     ViewData["Title"] = "Details";
 }
-<style>
-    .content {
-        display: flex;
-        flex-direction: row;
-    }
-</style>
 <div>
     <h4>
         @Html.DisplayFor(model => model.Name)
@@ -49,10 +43,10 @@
     </div>
 </div>
 <div>
-    @if (User.Identity.IsAuthenticated)
+    @*@if (User.IsInRole("user"))
     {
         <a class="btn btn-outline-dark" asp-action="addToCard" asp-controller="Orders" asp-route-id="@Model.Id">Добавить в корзину</a> <span> </span>
-    }
+    }*@
     @if (Model.category == category.mouse)
     {
         <a class="btn btn-outline-dark" asp-action="Index" asp-route-id="1">Вернуться к выбору товара</a>

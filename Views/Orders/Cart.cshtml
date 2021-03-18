@@ -56,7 +56,7 @@
     </tbody>
 </table>
 <hr />
-<a class="btn btn-dark" asp-action="Oplata" asp-controller="Orders" asp-route-id="2">Оплата картой</a><span> </span>
-<a class="btn btn-dark" asp-action="Oplata" asp-controller="Orders" asp-route-id="1">Оплата наличкой</a>
+@*<a class="btn btn-dark" asp-action="Oplata" asp-controller="Orders" asp-route-id="2">Оплата картой</a><span> </span>*@
+<a class="btn btn-dark" asp-action="Oplata" asp-controller="Orders" asp-route-id="1">Оформить заказ</a>
 Общая стоимость заказа : @Model.Sum(x => x._Count * x.Tovar.Cost) руб.
 <hr />

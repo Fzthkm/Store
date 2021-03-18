@@ -938,3 +938,4 @@ D:\04. Projects\Интернет-магазин\obj\Debug\net5.0\Razor\Views\Tov
 D:\04. Projects\Интернет-магазин\obj\Debug\net5.0\Razor\Views\Tovar\Edit.cshtml.g.cs
 D:\04. Projects\Интернет-магазин\obj\Debug\net5.0\Razor\Views\Tovar\Index.cshtml.g.cs
 D:\04. Projects\Интернет-магазин\obj\Debug\net5.0\NewStudio.csprojAssemblyReference.cache
+D:\04. Projects\Интернет-магазин\obj\Debug\net5.0\Razor\Views\Tovar\Search.cshtml.g.cs

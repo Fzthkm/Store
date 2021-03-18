@@ -51,7 +51,6 @@ namespace NewStudio.Controllers
             {
                 return NotFound();
             }
-
             return View(Tovar);
         }
 
@@ -126,7 +125,22 @@ namespace NewStudio.Controllers
             }
             return View(Tovar);
         }
+        public async Task<IActionResult> Search(int? stuffs, string name)
+        {
+            //Фильтрация
+            IQueryable<Tovar> tovar = _context.Tovars;
+            if (!String.IsNullOrEmpty(name))
+            {
+                tovar = tovar.Where(x => x.Name.Contains(name));
+            }
+            svm svm = new svm
+            {
+                Tovars = tovar,
+                viewModel = new searchViewModel(_context.Tovars.ToList(), stuffs, name)
+            };
+            return View(svm);
 
+        }
         // GET: Tovars/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
